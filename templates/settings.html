@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/9c35772714.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel='stylesheet' href='/static/css/style.css'>
+  <title>Bootstrap Theme</title>
+</head>
+<body data-spy='scroll' data-target='#main-nav' id='home'>
+  <div id="navbar"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class='col mt-3'>
+        <h1>Settings</h1>
+        <form method='POST' action='/settings'>
+          <h2>Account Settings</h2>
+          <div class='form-group'>
+            <label for='name'>Name</label>
+            <input type='text' class='form-control' id='name' name='name' value='{{info['name']}}'>
+          </div>
+          <div class='form-group'>
+            <label for='email'>Email</label>
+            <input type='email' class='form-control' id='email' name='email' value='{{info['email']}}'>
+          </div>
+          <div class='form-group'>
+            <label for='profile'>Profile</label>
+            <textarea class='form-control' name='profile' rows='4' id='profile'>{{info['profile']}}</textarea>
+          </div>
+          <div class="form-group">
+            <button class='btn btn-primary'>Update Account</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/static/bundle.js"></script>
+  <script>
+  // Get current year for the copyright
+  $('#year').text(new Date().getFullYear());
+
+  $('body').scrollspy({ target: '#main-nav' });
+
+    // Add smooth scrolling`
+    $('#main-nav a').on('click', function(e) {
+￼** Resolve this
+Linter
+Severity 	Provider 	Description	Line
+Error	JSCS	validateIndentation: Expected indentation of 0 characters	47:2
+Error	JSCS	validateIndentation: Expected indentation of 0 characters	48:2
+Error	JSCS	requireSpacesInAnonymousFunctionExpression: Missing space before opening round brace	48:41
+Error	JSCS	requireSpaceAfterKeywords: One space required after "if" keyword	50:8
+Error	JSCS	requireTrailingComma: Missing comma before closing curly brace	54:40
+Error	JSCS	requireSpacesInAnonymousFunctionExpression: Missing space before opening round brace	55:24
+Git
+GitHub
+Create Repository
+Initialize a new project directory with a Git repository
+￼Create repository
+templates/profile.html6223864:1(63, 2367)
+LFUTF-8HTML￼GitHub￼Git (0)4 updates

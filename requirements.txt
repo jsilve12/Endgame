@@ -1,0 +1,9 @@
+psycopg2
+aiofiles
+jinja2
+python-multipart
+starlette
+python-jose
+passlib
+cffi
+bcrypt

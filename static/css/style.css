@@ -1,0 +1,28 @@
+.card-img img {
+  height: 600px;
+}
+
+.carousel-item {
+  height: 600px;
+}
+
+.carousel-image-1 {
+  background: url('/static/img/carousel/img1.jpg');
+  background-size: cover;
+}
+
+.carousel-image-2 {
+  background: url('/static/img/carousel/img2.jpg');
+  background-size: cover;
+}
+
+.carousel-image-3 {
+  background: url('/static/img/carousel/img3.jpg');
+  background-size: cover;
+}
+
+@media(min-width: 1199px) {
+    .carousel-item {
+    height: 800px;
+  }
+}

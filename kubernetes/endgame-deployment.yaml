@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: endgame-website
+  namespace: resume
+  labels:
+    app: endgame-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: endgame-website
+      tier: deploy
+  template:
+    metadata:
+      labels:
+        app: endgame-website
+        tier: deploy
+    spec:
+      containers:
+        - name: endgame-website
+          image: gcr.io/personal-project-289714/endgame
+          ports:
+          - containerPort: 8000
