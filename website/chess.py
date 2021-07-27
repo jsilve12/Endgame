@@ -11,6 +11,6 @@ from .__init__ import templates
 router = APIRouter()
 
 
-@router.get('/chess', response_class=HTMLResponse)
+@router.get('/', response_class=HTMLResponse)
 async def get_index(request: Request):
     return templates.TemplateResponse('chess.html', {'request': request})

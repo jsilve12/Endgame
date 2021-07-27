@@ -10,9 +10,9 @@ from .__init__ import templates
 router = APIRouter()
 
 
-@router.get('/', response_class=HTMLResponse)
-async def get_index(request: Request):
-    print(os.getcwd())
-    return templates.TemplateResponse('index.html', {'request': request})
+# @router.get('/', response_class=HTMLResponse)
+# async def get_index(request: Request):
+#     print(os.getcwd())
+#     return templates.TemplateResponse('index.html', {'request': request})
 
 # EOF

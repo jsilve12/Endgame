@@ -9,10 +9,6 @@ router = APIRouter()
 async def navbar():
     return [
             {'url': '/', 'name': 'Home'},
-            {'url': '/messages', 'name': 'Message'},
-            {'url': '/settings', 'name': 'Settings'},
-            {'url': '/signup', 'name': 'Signup'},
-            {'url': '/login', 'name': 'Login'},
         ]
 
 

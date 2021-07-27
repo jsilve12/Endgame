@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: endgame-website-prod
+  namespace: resume
+  labels:
+    app: endgame-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: endgame-website
+      tier: deploy-prod
+  template:
+    metadata:
+      labels:
+        app: endgame-website
+        tier: deploy-prod
+    spec:
+      containers:
+        - name: endgame-website
+          image: gcr.io/personal-project-289714/endgame
+          ports:
+          - containerPort: 8000
+          volumeMounts:
+            - name: database
+              mountPath: "/apps/config"
+              readOnly: true
+      volumes:
+        - name: database
+          secret:
+            secretName: endgame-202107232359

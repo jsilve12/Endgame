@@ -1,9 +1,5 @@
-CREATE TABLE account(
+CREATE TABLE positions(
   id SERIAL PRIMARY KEY,
-  email TEXT NOT NULL,
-  name TEXT,
-  password TEXT NOT NULL,
-  profile TEXT,
-  image TEXT,
-  UNIQUE (email)
+  fen TEXT NOT NULL,
+  UNIQUE (fen)
 );

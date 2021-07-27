@@ -73,11 +73,17 @@ class Sheet extends React.Component {
       );
     }
     return (
-      <Paper style={{height: 225, width: '100%', backgroundColor: 'lightGray', padding: '5%'}}>
-        <Paper evelation={2} style={{overflow: 'auto', height: '100%'}}>
+      <Paper style={{height: 500, width: '100%', backgroundColor: 'lightGray', padding: '5%'}}>
+        <Paper evelation={2} style={{overflow: 'auto', height: '90%'}}>
           <List style={{maxHeight: '100%', overflow: 'auto'}} >
             {list}
           </List>
+        </Paper>
+        <Paper evelation={2} style={{marginTop: '1%', height: '10%'}}>
+          <div>
+            <Button style={{width: '50%'}}>{this.props.result}</Button>
+            <Button style={{width: '50%'}} onClick={this.props.reset}>Reset</Button>
+          </div>
         </Paper>
       </Paper>
     )
@@ -109,7 +115,14 @@ class Game extends React.Component {
     fetch('/api/chess/random', { method: 'GET', credentials: 'same-origin'})
     .then(response => response.json())
     .then(data => {
-      this.setState({ fen: data })
+      fetch('http://tablebase.lichess.ovh/standard?fen=' + data.replaceAll(' ', '_'))
+      .then(response2 => response2.json())
+      .then(data2 => {
+        this.setState(({ history, pieceSquare }) => ({
+          fen: data,
+          result: data2.wdl
+        }));
+      })
       this.game = new Chess(data);
     })
   }
@@ -166,6 +179,9 @@ class Game extends React.Component {
     fetch('http://tablebase.lichess.ovh/standard?fen=' + this.game.fen().replaceAll(' ', '_'))
     .then(response => response.json())
     .then(data => {
+      if(data.checkmate || data.stalemate || data.insufficient_material) {
+        this.reset();
+      }
       let move = this.game.move({
         from: data.moves[0].uci.substring(0,2),
         to: data.moves[0].uci.substring(2),
@@ -175,7 +191,8 @@ class Game extends React.Component {
       this.setState(({ history, pieceSquare }) => ({
         fen: this.game.fen(),
         history: this.game.history({ verbose: true }),
-        squareStyles: squareStyling({ pieceSquare, history })
+        squareStyles: squareStyling({ pieceSquare, history }),
+        result: data.wdl*(-1)
       }));
     })
   };
@@ -228,6 +245,33 @@ class Game extends React.Component {
     });
   }
 
+  reset = () => {
+    fetch('/api/chess/random', { method: 'GET', credentials: 'same-origin'})
+    .then(response => response.json())
+    .then(data => {
+      this.game = new Chess(data);
+      fetch('http://tablebase.lichess.ovh/standard?fen=' + data.replaceAll(' ', '_'))
+      .then(response2 => response2.json())
+      .then(data2 => {
+        this.setState({
+          fen: data,
+          dropSquareStyle: {},
+          squareStyles: {},
+          pieceSquare: "",
+          square: "",
+          history: [],
+          move: 1,
+          modal: false,
+          status: '',
+          turn: 'white',
+          player: 1,
+          sourceSelection: -1,
+          result: data2.wdl
+        });
+      })
+    })
+  }
+
   render() {
     const { fen, dropSquareStyle, squareStyles, history } = this.state;
     return this.props.children({
@@ -240,7 +284,9 @@ class Game extends React.Component {
       onDragOverSquare: this.onDragOverSquare,
       onSquareClick: this.onSquareClick,
       onSquareRightClick: this.onSquareRightClick,
-      history: history
+      history: history,
+      reset: this.reset,
+      result: this.state.result,
     });
   }
 }
@@ -259,13 +305,15 @@ export default function WithMoveValidation() {
           onDragOverSquare,
           onSquareClick,
           onSquareRightClick,
-          history
+          history,
+          reset,
+          result
         }) => (
-        <Grid container>
-          <Grid item>
+        <Grid container style={{maxWidth: 1.035*(Math.min(window.innerWidth*(1/3), 256) + Math.min(window.innerWidth*(2/3), window.innerHeight*0.75))}}>
+          <Grid item xs={8}>
             <Chessboard
               id="humanVsHuman"
-              width={320}
+              width={(Math.min(window.innerWidth*(2/3), window.innerHeight*0.75))}
               position={position}
               onDrop={onDrop}
               onMouseOverSquare={onMouseOverSquare}
@@ -281,8 +329,8 @@ export default function WithMoveValidation() {
               onSquareRightClick={onSquareRightClick}
             />
           </Grid>
-          <Grid item xs={2}>
-            <Sheet moves = {history} />
+          <Grid item xs={4} style={{maxWidth: Math.min(window.innerWidth*(1/3), 256)}}>
+            <Sheet moves = {history} reset = {reset} result = {result} />
           </Grid>
         </Grid>
         )}

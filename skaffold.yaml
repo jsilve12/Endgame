@@ -1,14 +1,14 @@
 apiVersion: skaffold/v2beta12
 kind: Config
 build:
-  # googleCloudBuild: {}
+  googleCloudBuild: {}
   artifacts:
     - image: gcr.io/personal-project-289714/endgame
       context: ./
 deploy:
   kubectl:
     manifests:
-      - kubernetes/endgame-deployment.yaml
+      - kubernetes/local/endgame-deployment.yaml
 portForward:
   - resourceType: deployment
     resourceName: endgame-website

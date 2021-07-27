@@ -37,7 +37,7 @@ def parseDB(filename='db.config', section='postgresql'):
 
 def get_cursor():
     """ Gets a Cursor"""
-    conn = psycopg2.connect(**parseDB('Boilerplate/configs/db.config'))
+    conn = psycopg2.connect(**parseDB('/app/configs/db.config'))
     cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     return cur
 

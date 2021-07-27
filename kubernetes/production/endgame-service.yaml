@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: endgame-service-prod
+  namespace: resume
+  labels:
+    app: endgame-website
+spec:
+  selector:
+    app: endgame-website
+    tier: deploy-prod
+  ports:
+  - port: 80
+    targetPort: 8000
+  type: LoadBalancer

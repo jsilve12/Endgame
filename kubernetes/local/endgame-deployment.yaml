@@ -22,3 +22,11 @@ spec:
           image: gcr.io/personal-project-289714/endgame
           ports:
           - containerPort: 8000
+          volumeMounts:
+            - name: database
+              mountPath: "/apps/config"
+              readOnly: true
+      volumes:
+        - name: database
+          secret:
+            secretName: endgame-202107232359
