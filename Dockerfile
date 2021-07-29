@@ -12,4 +12,4 @@ RUN npm install
 COPY . /app/
 RUN ./node_modules/.bin/webpack --mode development
 WORKDIR /
-CMD uvicorn app.main:app --host 0.0.0.0
+CMD uvicorn app.main:app

@@ -1,5 +1,6 @@
 """ Core Login Pages """
 import os
+import requests
 from typing import Optional
 from datetime import datetime, timedelta
 from fastapi import APIRouter, Request, Form, status, Cookie, Depends, Response, HTTPException
@@ -177,5 +178,10 @@ async def signup_form(Email: str = Form(...), Password: str = Form(...), Confirm
 @router.post('/user/exists/{email}')
 async def exists(email: str):
     return get_user(email) is not None
+
+
+@router.get('/authorize/lichess')
+async def lichess():
+    token = oauth.
 
 # EOF

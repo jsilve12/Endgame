@@ -19,7 +19,8 @@ spec:
     spec:
       containers:
         - name: endgame-website
-          image: gcr.io/personal-project-289714/endgame
+          image: gcr.io/personal-project-289714/endgame:8b909067-dirty
+          command: ["uvicorn", "app.main:app", "--host 0.0.0.0"]
           ports:
           - containerPort: 8000
           volumeMounts:

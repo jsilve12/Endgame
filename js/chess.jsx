@@ -82,7 +82,7 @@ class Sheet extends React.Component {
         <Paper evelation={2} style={{marginTop: '1%', height: '10%'}}>
           <div>
             <Button style={{width: '50%'}}>{this.props.result}</Button>
-            <Button style={{width: '50%'}} onClick={this.props.reset}>Reset</Button>
+            <Button style={{width: '50%'}} onClick={this.props.reset}>Next</Button>
           </div>
         </Paper>
       </Paper>

@@ -11,6 +11,6 @@ deploy:
       - kubernetes/local/endgame-deployment.yaml
 portForward:
   - resourceType: deployment
-    resourceName: endgame-website
+    resourceName: endgame-website-local
     port: 8000
     localPort: 8000

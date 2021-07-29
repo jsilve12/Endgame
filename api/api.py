@@ -9,9 +9,14 @@ router = APIRouter()
 async def navbar():
     return [
             {'url': '/', 'name': 'Home'},
+            {'url': '/settings', 'name': 'Settings'},
+            {'url': '/signup', 'name': 'Signup'},
+            {'url': '/login', 'name': 'Login'},
         ]
 
 
 @router.get('/navbar/name')
 async def name():
-    return 'Boilerplate'
+    return 'Endgame'
+
+# liches token: 66oNmGNArkYrgg1M
